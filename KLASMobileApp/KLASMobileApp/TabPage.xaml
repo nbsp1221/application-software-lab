@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.IsSwipePagingEnabled="False"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            android:TabbedPage.BarSelectedItemColor="White"
+            android:TabbedPage.BarItemColor="#66FFFFFF"
+            android:TabbedPage.IsSmoothScrollEnabled="False"
+            xmlns:image="clr-namespace:KLASMobileApp.ImageExtension"
+            xmlns:local="clr-namespace:KLASMobileApp.Tab" 
+            mc:Ignorable="d"
+            NavigationPage.HasNavigationBar="False"
+            BarBackgroundColor="#3a0420"
+            x:Class="KLASMobileApp.TabPage">
+
+    <local:MainPage Title="메인" Icon="{image:EmbeddedImage KLASMobileApp.Images.home.png}"/>
+    <local:ToolPage Title="기능" Icon="{image:EmbeddedImage KLASMobileApp.Images.tool2.png}"/>
+    <local:AlarmPage Title="알람" Icon="{image:EmbeddedImage KLASMobileApp.Images.alarm.png}"/>
+    <local:SettingPage Title="설정" Icon="{image:EmbeddedImage KLASMobileApp.Images.setting.png}"/>
+
+    <!--<ContentPage Title="메인" Icon="{image:EmbeddedImage KLASMobileApp.Images.home.png}"/>
+    <ContentPage Title="기능" Icon="{image:EmbeddedImage KLASMobileApp.Images.tool2.png}"/>
+    <ContentPage Title="알람" IconImageSource="{image:EmbeddedImage KLASMobileApp.Images.alarm.png}"/>
+    <ContentPage Title="설정" IconImageSource="{image:EmbeddedImage KLASMobileApp.Images.setting.png}"/>-->
+
+
+</TabbedPage>

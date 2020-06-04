@@ -16,7 +16,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -90,7 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KLASMobileApp\KLASMobileApp.csproj">
-      <Project>{BDB4A2E0-A8D5-4AA8-B02D-A082634AA336}</Project>
+      <Project>{BA97DE36-83EE-4670-BD68-9A480FC0009D}</Project>
       <Name>KLASMobileApp</Name>
     </ProjectReference>
   </ItemGroup>
