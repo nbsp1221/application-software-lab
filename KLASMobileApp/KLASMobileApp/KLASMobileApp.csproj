@@ -13,5 +13,32 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.495" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.8.6.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+    <Folder Include="ImageExtension\" />
+    <Folder Include="Tab\" />
+    <Folder Include="Webview\" />
+    <Folder Include="Net\" />
+    <Folder Include="Data\" />
+    <Folder Include="Constants\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Images\logo.png" />
+    <None Remove="Images\home.png" />
+    <None Remove="Images\alarm.png" />
+    <None Remove="Images\setting.png" />
+    <None Remove="Images\tool.png" />
+    <None Remove="Images\tool2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\logo.png" />
+    <EmbeddedResource Include="Images\home.png" />
+    <EmbeddedResource Include="Images\alarm.png" />
+    <EmbeddedResource Include="Images\setting.png" />
+    <EmbeddedResource Include="Images\tool.png" />
+    <EmbeddedResource Include="Images\tool2.png" />
   </ItemGroup>
 </Project>
