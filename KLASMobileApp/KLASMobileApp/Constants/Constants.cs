@@ -7,5 +7,6 @@ namespace KLASMobileApp.Constants
         public static string Url_LoginConfirm = "https://klas.kw.ac.kr/usr/cmn/login/LoginConfirm.do";
 
         public static string Url_LctrumSchdulInfo = "https://klas.kw.ac.kr/std/cmn/frame/LctrumSchdulInfo.do";
+        public static string Url_StdHome = "https://klas.kw.ac.kr/std/cmn/frame/StdHome.do";
     }
 }

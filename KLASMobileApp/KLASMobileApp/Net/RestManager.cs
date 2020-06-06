@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using KLASMobileApp.Data;
 
 namespace KLASMobileApp.Net
 {
@@ -20,6 +21,11 @@ namespace KLASMobileApp.Net
         public Task<string> GetSchdulInfo(string yearHakgi, string subject)
         {
             return restService.GetSchdulInfo(yearHakgi, subject);
+        }
+
+        public Task<LecturesBean> GetStdInfo()
+        {
+            return restService.GetStdInfo();
         }
     }
 }

@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using KLASMobileApp.Data;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.Crypto.Parameters;
@@ -43,6 +46,40 @@ namespace KLASMobileApp.Net
             }catch(Exception e)
             {
                 return "";
+            }
+        }
+
+        public async Task<LecturesBean> GetStdInfo()
+        {
+            try
+            {
+                HttpResponseMessage response = await client.PostAsync(new Uri(Constants.Constants.Url_StdHome), new StringContent("", Encoding.UTF8, "application/json"));
+                if (response.IsSuccessStatusCode)
+                {
+                    
+                    string value = await response.Content.ReadAsStringAsync();
+
+                    List<LectureData> lecturelist = JsonConvert.DeserializeObject<List<LectureData>>(JObject.Parse(value)["atnlcSbjectList"].ToString());
+                    List<TimeTableData> timeTableList = JsonConvert.DeserializeObject<List<TimeTableData>>(JObject.Parse(value)["timeTableList"].ToString());
+                    List<NotiData> notiList = JsonConvert.DeserializeObject<List<NotiData>>(JObject.Parse(value)["subjNotiList"].ToString());
+                    ProfessorData professorData = JsonConvert.DeserializeObject<ProfessorData>(JObject.Parse(value)["rspnsblProfsr"].ToString());
+
+                    LecturesBean bean = new LecturesBean();
+
+                    bean.lectureList = lecturelist;
+                    bean.timeTableData = timeTableList;
+                    bean.notiList = notiList;
+                    bean.professorData = professorData;
+                    return bean;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
             }
         }
 
