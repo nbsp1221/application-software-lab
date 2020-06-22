@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using KLASMobileApp.Data;
 
@@ -26,6 +27,15 @@ namespace KLASMobileApp.Net
         public Task<LecturesBean> GetStdInfo()
         {
             return restService.GetStdInfo();
+        }
+
+        /// <summary>
+        /// 모든 학기에 대한 과목 정보 얻기
+        /// </summary>
+        /// <returns></returns>
+        public Task<Dictionary<string, List<LectureInfo>>> GetAllSemesterLectures()
+        {
+            return restService.GetAllSemesterLectures();
         }
     }
 }

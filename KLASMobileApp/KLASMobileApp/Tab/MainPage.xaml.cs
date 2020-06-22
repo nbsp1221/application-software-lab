@@ -17,12 +17,17 @@ namespace KLASMobileApp.Tab
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            label.Text = "테스트 api 호출 : "+ await App.RestManager.GetSchdulInfo("2020,1", "U202018485H030023");
 
-            LecturesBean str = await App.RestManager.GetStdInfo();
+            Dictionary<string, List<LectureInfo>> allSemesterLectures = new Dictionary<string, List<LectureInfo>>();
 
-            
-            Console.WriteLine(str);
+            await App.RestManager.GetAllSemesterLectures();
+
+
+            //label.Text = "테스트 api 호출 : "+ await App.RestManager.GetSchdulInfo("2020,1", "U202018485H030023");
+
+            //LecturesBean str = await App.RestManager.GetStdInfo();
+
+            //System.Diagnostics.Debug.WriteLine("Text");
         }
     }
 }

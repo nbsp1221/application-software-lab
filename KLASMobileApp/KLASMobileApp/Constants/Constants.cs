@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace KLASMobileApp.Constants
 {
     public class Constants
@@ -8,5 +9,9 @@ namespace KLASMobileApp.Constants
 
         public static string Url_LctrumSchdulInfo = "https://klas.kw.ac.kr/std/cmn/frame/LctrumSchdulInfo.do";
         public static string Url_StdHome = "https://klas.kw.ac.kr/std/cmn/frame/StdHome.do";
+
+
+
+        public static string URL_AllSemesterLectures = "https://klas.kw.ac.kr/std/cmn/frame/YearhakgiAtnlcSbjectList.do";
     }
 }

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using KLASMobileApp.Data;
 using Newtonsoft.Json;
@@ -22,6 +23,7 @@ namespace KLASMobileApp.Net
         {
             client = new HttpClient();
         }
+
         public async Task<string> GetSchdulInfo(string yearHakgi, string subject)
         {
             try
@@ -158,5 +160,47 @@ namespace KLASMobileApp.Net
             return false;
         }
 
+
+
+        public async Task<Dictionary<string, List<LectureInfo>>> GetAllSemesterLectures()
+        {
+            try
+            {
+                Dictionary<string, List<LectureInfo>> allSemesterLectures = new Dictionary<string, List<LectureInfo>>();
+
+                HttpResponseMessage response = await client.PostAsync(
+                    new Uri(Constants.Constants.URL_AllSemesterLectures),
+                    new StringContent("{}", Encoding.UTF8, "application/json")
+                );
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonValue = await response.Content.ReadAsStringAsync();
+
+                    foreach (JToken jTokenSemester in JArray.Parse(jsonValue))
+                    {
+                        List<LectureInfo> lectureInfos = new List<LectureInfo>();
+
+                        foreach (JToken jTokenLecture in jTokenSemester["subjList"])
+                        {
+                            lectureInfos.Add(new LectureInfo(
+                                jTokenLecture["name"].ToString(),
+                                jTokenLecture["label"].ToString(),
+                                jTokenLecture["value"].ToString()
+                            ));
+                        }
+
+                        allSemesterLectures[jTokenSemester["value"].ToString()] = lectureInfos;
+                    }
+                }
+
+                return allSemesterLectures;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("\tGetAllSemesterLectures() ERROR - {0}", e.Message);
+                return null;
+            }
+        }
     }
 }
