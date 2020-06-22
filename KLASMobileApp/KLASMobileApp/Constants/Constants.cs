@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace KLASMobileApp.Constants
 {
@@ -12,6 +13,14 @@ namespace KLASMobileApp.Constants
 
 
 
+        /// <summary>
+        /// 메인 페이지 - 모든 학기에 대한 과목 정보 얻기
+        /// </summary>
         public static string URL_AllSemesterLectures = "https://klas.kw.ac.kr/std/cmn/frame/YearhakgiAtnlcSbjectList.do";
+
+        /// <summary>
+        /// 강의 계획서 페이지 - 학과 정보 얻기
+        /// </summary>
+        public static string URL_AllDepartments = "https://klas.kw.ac.kr/std/cps/atnlc/CmmnHakgwaList.do";
     }
 }

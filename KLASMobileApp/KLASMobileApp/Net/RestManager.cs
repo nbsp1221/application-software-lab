@@ -29,13 +29,24 @@ namespace KLASMobileApp.Net
             return restService.GetStdInfo();
         }
 
+
+
         /// <summary>
-        /// 모든 학기에 대한 과목 정보 얻기
+        /// 메인 페이지 - 모든 학기에 대한 과목 정보 얻기
         /// </summary>
         /// <returns></returns>
         public Task<Dictionary<string, List<LectureInfo>>> GetAllSemesterLectures()
         {
             return restService.GetAllSemesterLectures();
+        }
+
+        /// <summary>
+        /// 강의 계획서 페이지 - 학과 정보 얻기
+        /// </summary>
+        /// <returns></returns>
+        public Task<List<DepartmentInfo>> GetAllDepartments(int year, int semester)
+        {
+            return restService.GetAllDepartments(year, semester);
         }
     }
 }

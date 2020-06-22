@@ -202,5 +202,45 @@ namespace KLASMobileApp.Net
                 return null;
             }
         }
+
+        public async Task<List<DepartmentInfo>> GetAllDepartments(int year, int semester)
+        {
+            try
+            {
+                List<DepartmentInfo> allDepartments = new List<DepartmentInfo>();
+
+                string content = JsonConvert.SerializeObject(new
+                {
+                    selectYear = year,
+                    selecthakgi = semester
+                });
+
+                HttpResponseMessage response = await client.PostAsync(
+                    new Uri(Constants.Constants.URL_AllDepartments),
+                    new StringContent(content, Encoding.UTF8, "application/json")
+                );
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonValue = await response.Content.ReadAsStringAsync();
+
+                    foreach (JToken jTokenDepartment in JArray.Parse(jsonValue))
+                    {
+                        allDepartments.Add(new DepartmentInfo(
+                            jTokenDepartment["classCode"].ToString(),
+                            jTokenDepartment["openMajorName"].ToString(),
+                            jTokenDepartment["openMajorNameSub"].ToString()
+                        ));
+                    }
+                }
+
+                return allDepartments;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("\tGetAllDepartments() ERROR - {0}", e.Message);
+                return null;
+            }
+        }
     }
 }
