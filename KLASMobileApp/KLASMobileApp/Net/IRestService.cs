@@ -27,5 +27,12 @@ namespace KLASMobileApp.Net
         /// </summary>
         /// <returns></returns>
         Task<List<DepartmentInfo>> GetAllDepartments(int year, int semester);
+
+        /// <summary>
+        /// 강의 계획서 페이지 - 강의 계획서 검색
+        /// </summary>
+        /// <param name="syllabusSearchInfo">강의 계획서 검색에 필요한 정보</param>
+        /// <returns></returns>
+        Task<List<SyllabusInfo>> SearchSyllabus(SyllabusSearchInfo syllabusSearchInfo);
     }
 }

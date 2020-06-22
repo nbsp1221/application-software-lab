@@ -19,19 +19,17 @@ namespace KLASMobileApp.Tab
         {
             base.OnAppearing();
 
-            List<DepartmentInfo> allDepartments = await App.RestManager.GetAllDepartments(2020, 1);
+            SyllabusSearchInfo syllabusSearchInfo = new SyllabusSearchInfo();
+            syllabusSearchInfo.Year = 2020;
+            syllabusSearchInfo.Semester = 1;
+            syllabusSearchInfo.IsMyLecture = true;
 
-            foreach (var v in allDepartments)
+            List<SyllabusInfo> syllabusInfos = await App.RestManager.SearchSyllabus(syllabusSearchInfo);
+
+            foreach (var v in syllabusInfos)
             {
-                Debug.Print("{0}\t{1}\t{2}", v.Code, v.Name, v.SubName);
+                Debug.Print("{0}\t{1}\t{2}", v.LectureName, v.LectureType, v.ProfessorName);
             }
-
-            
-
-
-            //label.Text = "테스트 api 호출 : "+ await App.RestManager.GetSchdulInfo("2020,1", "U202018485H030023");
-            //LecturesBean str = await App.RestManager.GetStdInfo();
-            //System.Diagnostics.Debug.WriteLine("Text");
         }
     }
 }

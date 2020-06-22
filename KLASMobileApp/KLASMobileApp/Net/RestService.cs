@@ -162,6 +162,10 @@ namespace KLASMobileApp.Net
 
 
 
+
+
+
+
         public async Task<Dictionary<string, List<LectureInfo>>> GetAllSemesterLectures()
         {
             try
@@ -239,6 +243,49 @@ namespace KLASMobileApp.Net
             catch (Exception e)
             {
                 Debug.WriteLine("\tGetAllDepartments() ERROR - {0}", e.Message);
+                return null;
+            }
+        }
+
+        public async Task<List<SyllabusInfo>> SearchSyllabus(SyllabusSearchInfo syllabusSearchInfo)
+        {
+            try
+            {
+                List<SyllabusInfo> syllabusInfos = new List<SyllabusInfo>();
+
+                string content = JsonConvert.SerializeObject(new
+                {
+                    selectYear = syllabusSearchInfo.Year,
+                    selecthakgi = syllabusSearchInfo.Semester,
+                    selectRadio = syllabusSearchInfo.IsMyLecture ? "my" : "all",
+                    selectText = syllabusSearchInfo.LectureName,
+                    selectProfsr = syllabusSearchInfo.ProfessorName,
+                    cmmnGamok = "",
+                    selecthakgwa = syllabusSearchInfo.DepartmentCode,
+                    selectMajor = "",
+                    selectMajorList = ""
+                });
+
+                HttpResponseMessage response = await client.PostAsync(
+                    new Uri(Constants.Constants.URL_SearchSyllabus),
+                    new StringContent(content, Encoding.UTF8, "application/json")
+                );
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonValue = await response.Content.ReadAsStringAsync();
+
+                    foreach (JToken jToken in JArray.Parse(jsonValue))
+                    {
+                        syllabusInfos.Add(new SyllabusInfo(jToken));
+                    }
+                }
+
+                return syllabusInfos;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("\tSearchSyllabus() ERROR - {0}", e.Message);
                 return null;
             }
         }

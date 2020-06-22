@@ -48,5 +48,15 @@ namespace KLASMobileApp.Net
         {
             return restService.GetAllDepartments(year, semester);
         }
+
+        /// <summary>
+        /// 강의 계획서 페이지 - 강의 계획서 검색
+        /// </summary>
+        /// <param name="syllabusSearchInfo">강의 계획서 검색에 필요한 정보</param>
+        /// <returns></returns>
+        public Task<List<SyllabusInfo>> SearchSyllabus(SyllabusSearchInfo syllabusSearchInfo)
+        {
+            return restService.SearchSyllabus(syllabusSearchInfo);
+        }
     }
 }
