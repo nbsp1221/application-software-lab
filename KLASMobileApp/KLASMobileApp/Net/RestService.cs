@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
@@ -11,17 +13,43 @@ using Newtonsoft.Json.Linq;
 using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Security;
+using Xamarin.Android.Net;
 
 namespace KLASMobileApp.Net
 {
     public class RestService : IRestService
     {
         public HttpClient client;
+        public HttpClientHandler handler;
+        public CookieContainer cookies;
 
         public RestService()
         {
-            client = new HttpClient();
+            cookies = new CookieContainer();
+            handler = new AndroidClientHandler
+            {
+                UseCookies = true,
+                CookieContainer = cookies
+            };
+            handler.CookieContainer = cookies;
+
+            //client = new HttpClient(handler);
+            client = new HttpClient(handler);
+            //client.DefaultRequestHeaders.
+
+
         }
+
+        public void getCookies()
+        {
+            Uri uri = new Uri("https://klas.kw.ac.kr");
+            IEnumerable<Cookie> responseCookies = cookies.GetCookies(uri).Cast<Cookie>();
+
+            foreach (Cookie cookie in responseCookies)
+                Console.WriteLine(cookie.Name + ": " + cookie.Value);
+
+        }
+
         public async Task<string> GetSchdulInfo(string yearHakgi, string subject)
         {
             try

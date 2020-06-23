@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace KLASMobileApp
 {
@@ -17,6 +18,9 @@ namespace KLASMobileApp
             
             if(await App.RestManager.LoginSecurity(idEntry.Text, pwEntry.Text))
             {
+                Preferences.Set(Constants.Constants.Pref_Key_User_ID,idEntry.Text);
+                Preferences.Set(Constants.Constants.Pref_Key_User_PW, pwEntry.Text);
+
                 await this.Navigation.PushAsync(new TabPage());
                 this.Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
             }

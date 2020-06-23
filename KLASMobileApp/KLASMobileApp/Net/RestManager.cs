@@ -27,5 +27,10 @@ namespace KLASMobileApp.Net
         {
             return restService.GetStdInfo();
         }
+
+        public void getCookies()
+        {
+            restService.getCookies();
+        }
     }
 }
