@@ -1,6 +1,9 @@
-<<<<<<< HEAD
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:KLASMobileApp.Webview" x:Class="KLASMobileApp.Tab.MainPage">
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:KLASMobileApp.Webview"
+    x:Class="KLASMobileApp.Tab.MainPage">
     <ContentPage.Content>
             <StackLayout>
                 <local:CookieWebView
@@ -12,52 +15,3 @@
             </StackLayout>
     </ContentPage.Content>
 </ContentPage>
-=======
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:webview="clr-namespace:KLASMobileApp.Webview" x:Class="KLASMobileApp.Tab.MainPage">
-    <ContentPage.Content>
-        <StackLayout
-            Orientation="Vertical">
-            <StackLayout
-                HeightRequest="200">
-                <ListView x:Name="listView"
-                      MinimumHeightRequest="100"
-                      HasUnevenRows = "True"
-                      ItemsSource="{Binding Exams}"
-                      Header="{Binding Header}"
-                      >
-                    <ListView.HeaderTemplate>
-                        <DataTemplate>
-                            <StackLayout Orientation="Horizontal" 
-        	                Padding="10,5,5,10">
-                                <Label Text="{Binding .}"/>
-                            </StackLayout>
-                        </DataTemplate>
-                    </ListView.HeaderTemplate>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout
-                                Padding="10,0,0,0"
-                                Margin="0,5"
-                            Orientation="Vertical">
-                                    <Label Text="{Binding Title}" TextColor="Black"/>
-                                    <Label Text="{Binding Des1}"/>
-                                    <Label Text="{Binding Des2}"/>
-                                </StackLayout>
-                            </ViewCell>
-                            <!--<TextCell Text="{Binding Title}" Detail="{Binding Des1}"></TextCell>-->
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
-            <StackLayout>
-                <WebView
-                x:Name="webView"
-                   HeightRequest="1000"
-        WidthRequest="1000"/>
-            </StackLayout>
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
->>>>>>> 8a211f6cc80592e83967ef02a95226b769eb9d9f

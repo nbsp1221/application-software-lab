@@ -88,7 +88,6 @@ namespace KLASMobileApp.Net
             return restService.SearchSyllabus(syllabusSearchInfo);
         }
 
-<<<<<<< HEAD
         public Task<List<OnlineLectureData>> GetOnlineLectures(string yearhakgi, string subcode)
         {
             return restService.GetOnlineLectures(yearhakgi, subcode);
@@ -98,15 +97,15 @@ namespace KLASMobileApp.Net
         public Task<List<HomeWorkData>> GetHomeWorks(string yearhakgi, string subcode)
         {
             return restService.GetHomeWorks(yearhakgi, subcode);
-=======
-        /// <summary>
-        /// 수강 / 성적 조회 페이지 - 성적 정보 얻기
-        /// </summary>
-        /// <returns></returns>
+            /// <summary>
+            /// 수강 / 성적 조회 페이지 - 성적 정보 얻기
+            /// </summary>
+            /// <returns></returns>
+            /// 
+        }
         public Task<Dictionary<string, List<ScoreInfo>>> GetAllSemesterScores()
         {
             return restService.GetAllSemesterScores();
->>>>>>> 8a211f6cc80592e83967ef02a95226b769eb9d9f
         }
     }
 }

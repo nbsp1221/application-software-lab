@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Android.Webkit;
 using KLASMobileApp.Data;
 using KLASMobileApp.Net;
 using Xamarin.Forms;
