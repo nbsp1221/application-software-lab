@@ -37,6 +37,29 @@ namespace KLASMobileApp.Net
 
 
 
+
+
+        /// <summary>
+        /// 알림 서버 - 토큰 추가 및 업데이트
+        /// </summary>
+        /// <param name="studentCode">학번</param>
+        /// <param name="mobileToken">특정 기기의 토큰</param>
+        /// <returns></returns>
+        public Task<string> UpdateToken(string studentCode, string mobileToken)
+        {
+            return restService.UpdateToken(studentCode, mobileToken);
+        }
+
+        /// <summary>
+        /// 알림 서버 - 알림 추가
+        /// </summary>
+        /// <param name="notificationInfo">추가할 알림 정보</param>
+        /// <returns></returns>
+        public Task<string> AddNotification(NotificationInfo notificationInfo)
+        {
+            return restService.AddNotification(notificationInfo);
+        }
+
         /// <summary>
         /// 메인 페이지 - 모든 학기에 대한 과목 정보 얻기
         /// </summary>
@@ -65,6 +88,7 @@ namespace KLASMobileApp.Net
             return restService.SearchSyllabus(syllabusSearchInfo);
         }
 
+<<<<<<< HEAD
         public Task<List<OnlineLectureData>> GetOnlineLectures(string yearhakgi, string subcode)
         {
             return restService.GetOnlineLectures(yearhakgi, subcode);
@@ -74,6 +98,15 @@ namespace KLASMobileApp.Net
         public Task<List<HomeWorkData>> GetHomeWorks(string yearhakgi, string subcode)
         {
             return restService.GetHomeWorks(yearhakgi, subcode);
+=======
+        /// <summary>
+        /// 수강 / 성적 조회 페이지 - 성적 정보 얻기
+        /// </summary>
+        /// <returns></returns>
+        public Task<Dictionary<string, List<ScoreInfo>>> GetAllSemesterScores()
+        {
+            return restService.GetAllSemesterScores();
+>>>>>>> 8a211f6cc80592e83967ef02a95226b769eb9d9f
         }
     }
 }

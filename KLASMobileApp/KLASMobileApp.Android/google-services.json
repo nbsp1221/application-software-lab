@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "376210909538",
+    "firebase_url": "https://klasmobileapp.firebaseio.com",
+    "project_id": "klasmobileapp",
+    "storage_bucket": "klasmobileapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:376210909538:android:103f0fc7a11699a960e43b",
+        "android_client_info": {
+          "package_name": "com.companyname.klasmobileapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "376210909538-k27o5lp9beav33718mdp0i684nd3u2bc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5S4seWfoi51QAu3LoEL7Y9NMcyOTbOXs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "376210909538-k27o5lp9beav33718mdp0i684nd3u2bc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

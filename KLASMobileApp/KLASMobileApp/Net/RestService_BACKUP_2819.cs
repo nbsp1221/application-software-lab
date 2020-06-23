@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -209,7 +209,6 @@ namespace KLASMobileApp.Net
 
 
 
-
         public async Task<string> UpdateToken(string studentCode, string mobileToken)
         {
             try
@@ -359,7 +358,7 @@ namespace KLASMobileApp.Net
                     cmmnGamok = "",
                     selecthakgwa = syllabusSearchInfo.DepartmentCode,
                     selectMajor = "",
-                    selectMajorList = ""
+                    selectMajorList = "",
                 });
 
                 HttpResponseMessage response = await client.PostAsync(
@@ -386,43 +385,7 @@ namespace KLASMobileApp.Net
             }
         }
 
-        public async Task<Dictionary<string, List<ScoreInfo>>> GetAllSemesterScores()
-        {
-            try
-            {
-                Dictionary<string, List<ScoreInfo>> allSemesterScores = new Dictionary<string, List<ScoreInfo>>();
-
-                HttpResponseMessage response = await client.PostAsync(
-                    new Uri(Constants.Constants.URL_AllSemesterScores),
-                    new StringContent("{}", Encoding.UTF8, "application/json")
-                );
-
-                if (response.IsSuccessStatusCode)
-                {
-                    string jsonValue = await response.Content.ReadAsStringAsync();
-
-                    foreach (JToken jTokenSemester in JArray.Parse(jsonValue))
-                    {
-                        List<ScoreInfo> scoreInfos = new List<ScoreInfo>();
-
-                        foreach (JToken jTokenScore in jTokenSemester["sungjukList"])
-                        {
-                            scoreInfos.Add(new ScoreInfo(jTokenScore));
-                        }
-
-                        allSemesterScores[string.Format("{0},0{1}", jTokenSemester["thisYear"], jTokenSemester["hakgi"])] = scoreInfos;
-                    }
-                }
-
-                return allSemesterScores;
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("\tGetAllSemesterScores() ERROR - {0}", e.Message);
-                return null;
-            }
-        }
-
+<<<<<<< HEAD
         public async Task<List<OnlineLectureData>> GetOnlineLectures(string selectYearhakgi, string selectSubj)
         {
             List<OnlineLectureData> onlineLectureDatas;
@@ -491,9 +454,43 @@ namespace KLASMobileApp.Net
             }
             catch (Exception e)
             {
+=======
+        public async Task<Dictionary<string, List<ScoreInfo>>> GetAllSemesterScores()
+        {
+            try
+            {
+                Dictionary<string, List<ScoreInfo>> allSemesterScores = new Dictionary<string, List<ScoreInfo>>();
+
+                HttpResponseMessage response = await client.PostAsync(
+                    new Uri(Constants.Constants.URL_AllSemesterScores),
+                    new StringContent("{}", Encoding.UTF8, "application/json")
+                );
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonValue = await response.Content.ReadAsStringAsync();
+
+                    foreach (JToken jTokenSemester in JArray.Parse(jsonValue))
+                    {
+                        List<ScoreInfo> scoreInfos = new List<ScoreInfo>();
+
+                        foreach (JToken jTokenScore in jTokenSemester["sungjukList"])
+                        {
+                            scoreInfos.Add(new ScoreInfo(jTokenScore));
+                        }
+
+                        allSemesterScores[string.Format("{0},0{1}", jTokenSemester["thisYear"], jTokenSemester["hakgi"])] = scoreInfos;
+                    }
+                }
+
+                return allSemesterScores;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("\tGetAllSemesterScores() ERROR - {0}", e.Message);
+>>>>>>> 8a211f6cc80592e83967ef02a95226b769eb9d9f
                 return null;
             }
         }
-        
     }
 }

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="KLASMobileApp.DetailPages.CurProgPage">
+    <ContentPage.Content>
+
+        <StackLayout
+            Orientation="Vertical">
+            <Label
+                Text="수강 과목 현황"
+                Margin="14,10"
+                TextColor="Black"
+                HorizontalTextAlignment="Start"
+                FontSize="24"/>
+            <StackLayout>
+                <ListView x:Name="listView"
+                      HasUnevenRows = "True"
+                          ItemSelected="listView_ItemSelected"
+                      ItemsSource="{Binding Exams}"
+                      >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <!--<ViewCell.ContextActions>
+                                    <MenuItem  Clicked="Call_Clicked" CommandParameter="{Binding .}"></MenuItem>
+                                </ViewCell.ContextActions>-->
+                                <StackLayout
+                                Padding="10,0,0,0"
+                                Margin="0,5"
+                            Orientation="Vertical">
+                                    <StackLayout.GestureRecognizers
+                                        >
+                                        <ClickGestureRecognizer></ClickGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                    <Label Text="{Binding Title}" TextColor="Black"/>
+                                    <Label Text="{Binding Des1}"/>
+                                    <Label Text="{Binding Des2}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

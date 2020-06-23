@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using KLASMobileApp.Data;
-using KLASMobileApp.Webview;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Org.BouncyCastle.Asn1;
@@ -42,17 +41,13 @@ namespace KLASMobileApp.Net
 
         }
 
-        public async Task<IEnumerable<Cookie>> getCookies()
+        public void getCookies()
         {
             Uri uri = new Uri("https://klas.kw.ac.kr");
             IEnumerable<Cookie> responseCookies = cookies.GetCookies(uri).Cast<Cookie>();
 
-            CookieContainer cookieContainer = new CookieContainer();
-            
             foreach (Cookie cookie in responseCookies)
                 Console.WriteLine(cookie.Name + ": " + cookie.Value);
-
-            return responseCookies;
 
         }
 
@@ -77,7 +72,7 @@ namespace KLASMobileApp.Net
                 {
                     return "";
                 }
-            } catch (Exception e)
+            }catch(Exception e)
             {
                 return "";
             }
@@ -90,7 +85,7 @@ namespace KLASMobileApp.Net
                 HttpResponseMessage response = await client.PostAsync(new Uri(Constants.Constants.Url_StdHome), new StringContent("", Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
                 {
-
+                    
                     string value = await response.Content.ReadAsStringAsync();
 
                     List<LectureData> lecturelist = JsonConvert.DeserializeObject<List<LectureData>>(JObject.Parse(value)["atnlcSbjectList"].ToString());
@@ -129,7 +124,7 @@ namespace KLASMobileApp.Net
 
                     string key = JObject.Parse(res)["publicKey"].ToString();
                     string value = Newtonsoft.Json.JsonConvert.SerializeObject(new { loginId = id,
-                        loginPwd = pw, storeIdYn = "N" });
+                    loginPwd=pw, storeIdYn="N"});
 
 
                     Asn1Object obj = Asn1Object.FromByteArray(Convert.FromBase64String(key));
@@ -165,39 +160,26 @@ namespace KLASMobileApp.Net
                         redirectTabUrl = "",
                     });
 
-                    HttpResponseMessage response2 = await client.PostAsync(new Uri(Constants.Constants.Url_LoginConfirm),
-                            new StringContent(content, Encoding.UTF8, "application/json"));
+                    HttpResponseMessage response2 = await client.PostAsync(new Uri(Constants.Constants.Url_LoginConfirm) ,
+                            new StringContent(content,Encoding.UTF8, "application/json"));
                     try
                     {
-                        if (response2.IsSuccessStatusCode) {
+                        if (response2.IsSuccessStatusCode) { 
                             string res2 = await response2.Content.ReadAsStringAsync();
 
-                            if (JObject.Parse(res2)["errorCount"].ToString() == "0") {
-                                Uri uri = new Uri("https://klas.kw.ac.kr");
-                                IEnumerable<Cookie> responseCookies = cookies.GetCookies(uri).Cast<Cookie>();
-
-                                CookieContainer cookieContainer = new CookieContainer();
-
-                                foreach (Cookie cookie in responseCookies) {
-                                    Console.WriteLine(cookie.Name + ": " + cookie.Value);
-                                    cookieContainer.Add(cookie);
-                                }
-
-                                UserInfo.CookieContainer = cookieContainer;
-
-
+                            if (JObject.Parse(res2)["errorCount"].ToString() == "0")
                                 return true;
-                            }else
+                            else
                                 return false;
                         }
                     }
-                    catch (Exception e)
+                    catch(Exception e)
                     {
                         Debug.WriteLine(@"\tERROR {0}", e.Message);
                         return false;
                     }
                 }
-            } catch (Exception e)
+            }catch(Exception e)
             {
                 Debug.WriteLine(@"\tERROR {0}", e.Message);
                 return false;
@@ -210,57 +192,6 @@ namespace KLASMobileApp.Net
 
 
 
-        public async Task<string> UpdateToken(string studentCode, string mobileToken)
-        {
-            try
-            {
-                string content = JsonConvert.SerializeObject(new
-                {
-                    studentCode = studentCode,
-                    mobileToken = mobileToken
-                });
-
-                HttpResponseMessage response = await client.PostAsync(
-                    new Uri(Constants.Constants.URL_UpdateToken),
-                    new StringContent(content, Encoding.UTF8, "application/json")
-                );
-
-                if (response.IsSuccessStatusCode)
-                {
-                    return await response.Content.ReadAsStringAsync();
-                }
-
-                return null;
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("\tUpdateToken() ERROR - {0}", e.Message);
-                return null;
-            }
-        }
-
-        public async Task<string> AddNotification(NotificationInfo notificationInfo)
-        {
-            try
-            {
-                HttpResponseMessage response = await client.PostAsync(
-                    new Uri(Constants.Constants.URL_AddNotification),
-                    new StringContent(notificationInfo.ToJsonValue(), Encoding.UTF8, "application/json")
-                );
-
-                if (response.IsSuccessStatusCode)
-                {
-                    return await response.Content.ReadAsStringAsync();
-                }
-
-                return null;
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("\tAddNotification() ERROR - {0}", e.Message);
-                return null;
-            }
-        }
 
         public async Task<Dictionary<string, List<LectureInfo>>> GetAllSemesterLectures()
         {
@@ -385,115 +316,5 @@ namespace KLASMobileApp.Net
                 return null;
             }
         }
-
-        public async Task<Dictionary<string, List<ScoreInfo>>> GetAllSemesterScores()
-        {
-            try
-            {
-                Dictionary<string, List<ScoreInfo>> allSemesterScores = new Dictionary<string, List<ScoreInfo>>();
-
-                HttpResponseMessage response = await client.PostAsync(
-                    new Uri(Constants.Constants.URL_AllSemesterScores),
-                    new StringContent("{}", Encoding.UTF8, "application/json")
-                );
-
-                if (response.IsSuccessStatusCode)
-                {
-                    string jsonValue = await response.Content.ReadAsStringAsync();
-
-                    foreach (JToken jTokenSemester in JArray.Parse(jsonValue))
-                    {
-                        List<ScoreInfo> scoreInfos = new List<ScoreInfo>();
-
-                        foreach (JToken jTokenScore in jTokenSemester["sungjukList"])
-                        {
-                            scoreInfos.Add(new ScoreInfo(jTokenScore));
-                        }
-
-                        allSemesterScores[string.Format("{0},0{1}", jTokenSemester["thisYear"], jTokenSemester["hakgi"])] = scoreInfos;
-                    }
-                }
-
-                return allSemesterScores;
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("\tGetAllSemesterScores() ERROR - {0}", e.Message);
-                return null;
-            }
-        }
-
-        public async Task<List<OnlineLectureData>> GetOnlineLectures(string selectYearhakgi, string selectSubj)
-        {
-            List<OnlineLectureData> onlineLectureDatas;
-            try
-            {
-                List<string> emptyList = new List<string>();
-                string content = Newtonsoft.Json.JsonConvert.SerializeObject(new
-                {
-                    lrnStatus = "N",
-                    lrnSttus = "N",
-                    pageInit = false,
-                    selectYearhakgi = selectYearhakgi,
-                    selectSubj = selectSubj,
-                    selectChangeYn = "Y",
-                    totMbList = emptyList
-                }); ;
-
-                HttpResponseMessage response = await client.PostAsync(new Uri(Constants.Constants.URL_OnlineLectures),
-                    new StringContent(content, Encoding.UTF8, "application/json"));
-                if (response.IsSuccessStatusCode)
-                {
-                    string value = await response.Content.ReadAsStringAsync();
-                    onlineLectureDatas = JsonConvert.DeserializeObject<List<OnlineLectureData>>(value);
-                    return onlineLectureDatas;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-
-        public async Task<List<HomeWorkData>> GetHomeWorks(string selectYearhakgi, string selectSubj)
-        {
-            List<HomeWorkData> onlineLectureDatas;
-            try
-            {
-                List<string> emptyList = new List<string>();
-                string content = Newtonsoft.Json.JsonConvert.SerializeObject(new
-                {
-                    lrnStatus = "N",
-                    lrnSttus = "N",
-                    pageInit = false,
-                    selectYearhakgi = selectYearhakgi,
-                    selectSubj = selectSubj,
-                    selectChangeYn = "Y",
-                    totMbList = emptyList
-                }); ;
-
-                HttpResponseMessage response = await client.PostAsync(new Uri(Constants.Constants.URL_HomweWorks),
-                    new StringContent(content, Encoding.UTF8, "application/json"));
-                if (response.IsSuccessStatusCode)
-                {
-                    string value = await response.Content.ReadAsStringAsync();
-                    onlineLectureDatas = JsonConvert.DeserializeObject<List<HomeWorkData>>(value);
-                    return onlineLectureDatas;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-        
     }
 }

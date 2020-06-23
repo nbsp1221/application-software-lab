@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Runtime.CompilerServices;
@@ -54,15 +54,17 @@ namespace KLASMobileApp.Net
         /// <returns></returns>
         Task<List<SyllabusInfo>> SearchSyllabus(SyllabusSearchInfo syllabusSearchInfo);
 
+<<<<<<< HEAD
 
         Task<List<OnlineLectureData>> GetOnlineLectures(string selectYearhakgi, string selectSubj);
         Task<List<HomeWorkData>> GetHomeWorks(string selectYearhakgi, string selectSubj);
         
-
+=======
         /// <summary>
         /// 수강 / 성적 조회 페이지 - 성적 정보 얻기
         /// </summary>
         /// <returns></returns>
         Task<Dictionary<string, List<ScoreInfo>>> GetAllSemesterScores();
+>>>>>>> 8a211f6cc80592e83967ef02a95226b769eb9d9f
     }
 }
