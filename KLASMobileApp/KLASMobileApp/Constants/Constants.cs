@@ -36,6 +36,6 @@ namespace KLASMobileApp.Constants
         /// <summary>
         /// 수강 / 성적 조회 페이지 - 성적 정보 얻기
         /// </summary>
-        public static string URL_Scores = "https://klas.kw.ac.kr/std/cps/inqire/AtnlcScreSungjukInfo.do";
+        public static string URL_AllSemesterScores = "https://klas.kw.ac.kr/std/cps/inqire/AtnlcScreSungjukInfo.do";
     }
 }

@@ -324,7 +324,7 @@ namespace KLASMobileApp.Net
                 Dictionary<string, List<ScoreInfo>> allSemesterScores = new Dictionary<string, List<ScoreInfo>>();
 
                 HttpResponseMessage response = await client.PostAsync(
-                    new Uri(Constants.Constants.URL_Scores),
+                    new Uri(Constants.Constants.URL_AllSemesterScores),
                     new StringContent("{}", Encoding.UTF8, "application/json")
                 );
 
