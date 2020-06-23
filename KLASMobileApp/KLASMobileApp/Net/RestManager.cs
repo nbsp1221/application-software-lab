@@ -36,6 +36,19 @@ namespace KLASMobileApp.Net
 
 
 
+
+
+        /// <summary>
+        /// 알림 서버 - 토큰 추가 및 업데이트
+        /// </summary>
+        /// <param name="studentCode">학번</param>
+        /// <param name="mobileToken">특정 기기의 토큰</param>
+        /// <returns></returns>
+        public Task<string> UpdateToken(string studentCode, string mobileToken)
+        {
+            return restService.UpdateToken(studentCode, mobileToken);
+        }
+
         /// <summary>
         /// 메인 페이지 - 모든 학기에 대한 과목 정보 얻기
         /// </summary>

@@ -72,7 +72,7 @@ namespace KLASMobileApp.Net
                 {
                     return "";
                 }
-            }catch(Exception e)
+            } catch (Exception e)
             {
                 return "";
             }
@@ -85,7 +85,7 @@ namespace KLASMobileApp.Net
                 HttpResponseMessage response = await client.PostAsync(new Uri(Constants.Constants.Url_StdHome), new StringContent("", Encoding.UTF8, "application/json"));
                 if (response.IsSuccessStatusCode)
                 {
-                    
+
                     string value = await response.Content.ReadAsStringAsync();
 
                     List<LectureData> lecturelist = JsonConvert.DeserializeObject<List<LectureData>>(JObject.Parse(value)["atnlcSbjectList"].ToString());
@@ -124,7 +124,7 @@ namespace KLASMobileApp.Net
 
                     string key = JObject.Parse(res)["publicKey"].ToString();
                     string value = Newtonsoft.Json.JsonConvert.SerializeObject(new { loginId = id,
-                    loginPwd=pw, storeIdYn="N"});
+                        loginPwd = pw, storeIdYn = "N" });
 
 
                     Asn1Object obj = Asn1Object.FromByteArray(Convert.FromBase64String(key));
@@ -160,11 +160,11 @@ namespace KLASMobileApp.Net
                         redirectTabUrl = "",
                     });
 
-                    HttpResponseMessage response2 = await client.PostAsync(new Uri(Constants.Constants.Url_LoginConfirm) ,
-                            new StringContent(content,Encoding.UTF8, "application/json"));
+                    HttpResponseMessage response2 = await client.PostAsync(new Uri(Constants.Constants.Url_LoginConfirm),
+                            new StringContent(content, Encoding.UTF8, "application/json"));
                     try
                     {
-                        if (response2.IsSuccessStatusCode) { 
+                        if (response2.IsSuccessStatusCode) {
                             string res2 = await response2.Content.ReadAsStringAsync();
 
                             if (JObject.Parse(res2)["errorCount"].ToString() == "0")
@@ -173,13 +173,13 @@ namespace KLASMobileApp.Net
                                 return false;
                         }
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         Debug.WriteLine(@"\tERROR {0}", e.Message);
                         return false;
                     }
                 }
-            }catch(Exception e)
+            } catch (Exception e)
             {
                 Debug.WriteLine(@"\tERROR {0}", e.Message);
                 return false;
@@ -191,7 +191,34 @@ namespace KLASMobileApp.Net
 
 
 
+        public async Task<string> UpdateToken(string studentCode, string mobileToken)
+        {
+            try
+            {
+                string content = JsonConvert.SerializeObject(new
+                {
+                    studentCode = studentCode,
+                    mobileToken = mobileToken
+                });
 
+                HttpResponseMessage response = await client.PostAsync(
+                    new Uri(Constants.Constants.URL_UpdateToken),
+                    new StringContent(content, Encoding.UTF8, "application/json")
+                );
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsStringAsync();
+                }
+
+                return null;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("\tUpdateToken() ERROR - {0}", e.Message);
+                return null;
+            }
+        }
 
         public async Task<Dictionary<string, List<LectureInfo>>> GetAllSemesterLectures()
         {

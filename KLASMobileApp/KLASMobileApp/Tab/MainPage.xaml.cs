@@ -34,14 +34,24 @@ namespace KLASMobileApp.Tab
         {
             base.OnAppearing();
 
+            string result = await App.RestManager.UpdateToken("2018203032", "testtoken");
+            
+            Debug.Print(result);
 
 
+            /*
             Dictionary<string, List<ScoreInfo>> allSemesterScores = await App.RestManager.GetAllSemesterScores();
 
             foreach (var v in allSemesterScores["2019,02"])
             {
                 Debug.Print("{0}\t{1}\t{2}", v.LectureName, v.LectureType, v.Grade);
             }
+            */
+
+
+
+
+
 
 
             /*

@@ -18,6 +18,12 @@ namespace KLASMobileApp.Constants
         public static string Pref_Key_User_PW = "user_pw";
 
 
+
+        /// <summary>
+        /// 알림 서버 - 토큰 추가 및 업데이트
+        /// </summary>
+        public static string URL_UpdateToken = "https://retn0.kr/klas-helper/token.php";
+
         /// <summary>
         /// 메인 페이지 - 모든 학기에 대한 과목 정보 얻기
         /// </summary>
