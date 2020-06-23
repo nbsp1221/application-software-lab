@@ -42,21 +42,6 @@
                    HeightRequest="1000"
         WidthRequest="1000"/>
             </StackLayout>
-
-
-
-            <!--<StackLayout
-            VerticalOptions="Center">
-                <Label
-                Text="메인페이지"
-                VerticalOptions="Center"
-                HorizontalOptions="Center"
-                TextColor="Black"
-                />
-                <Label
-                HorizontalOptions="Center"
-                x:Name="label"/>
-            </StackLayout>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
