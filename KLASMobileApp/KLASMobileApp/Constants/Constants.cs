@@ -22,7 +22,7 @@ namespace KLASMobileApp.Constants
         /// <summary>
         /// 알림 서버 - 토큰 추가 및 업데이트
         /// </summary>
-        public static string URL_UpdateToken = "https://retn0.kr/klas-helper/token.php";
+        public static string URL_UpdateToken = "https://retn0.kr/klas-helper/token-update.php";
 
         /// <summary>
         /// 메인 페이지 - 모든 학기에 대한 과목 정보 얻기
