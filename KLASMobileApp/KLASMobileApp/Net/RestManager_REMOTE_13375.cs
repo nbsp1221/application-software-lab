@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using KLASMobileApp.Data;
@@ -27,11 +27,6 @@ namespace KLASMobileApp.Net
         public Task<LecturesBean> GetStdInfo()
         {
             return restService.GetStdInfo();
-        }
-
-        public void getCookies()
-        {
-            restService.getCookies();
         }
 
 

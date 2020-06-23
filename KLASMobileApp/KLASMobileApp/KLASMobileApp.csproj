@@ -19,10 +19,8 @@
   <ItemGroup>
     <Folder Include="Images\" />
     <Folder Include="ImageExtension\" />
-    <Folder Include="Tab\" />
     <Folder Include="Webview\" />
     <Folder Include="Net\" />
-    <Folder Include="Data\" />
     <Folder Include="Constants\" />
     <Folder Include="ViewModel\" />
   </ItemGroup>

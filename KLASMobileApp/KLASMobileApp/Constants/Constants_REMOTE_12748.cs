@@ -13,12 +13,6 @@ namespace KLASMobileApp.Constants
 
 
 
-<<<<<<< HEAD
-
-
-        public static string Pref_Key_User_ID = "user_id";
-        public static string Pref_Key_User_PW = "user_pw";
-=======
         /// <summary>
         /// 메인 페이지 - 모든 학기에 대한 과목 정보 얻기
         /// </summary>
@@ -33,6 +27,5 @@ namespace KLASMobileApp.Constants
         /// 강의 계획서 페이지 - 강의 계획서 검색
         /// </summary>
         public static string URL_SearchSyllabus = "https://klas.kw.ac.kr/std/cps/atnlc/LectrePlanStdList.do";
->>>>>>> d32127fd8b55c5557d31183628e316f6352c52d9
     }
 }

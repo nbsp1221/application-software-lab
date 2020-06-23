@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using KLASMobileApp.Data;
@@ -29,11 +29,11 @@ namespace KLASMobileApp.Net
             return restService.GetStdInfo();
         }
 
+<<<<<<< HEAD
         public void getCookies()
         {
             restService.getCookies();
-        }
-
+=======
 
 
         /// <summary>
@@ -62,6 +62,7 @@ namespace KLASMobileApp.Net
         public Task<List<SyllabusInfo>> SearchSyllabus(SyllabusSearchInfo syllabusSearchInfo)
         {
             return restService.SearchSyllabus(syllabusSearchInfo);
+>>>>>>> d32127fd8b55c5557d31183628e316f6352c52d9
         }
     }
 }
