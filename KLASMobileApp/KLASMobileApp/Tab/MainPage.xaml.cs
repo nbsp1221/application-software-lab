@@ -34,8 +34,14 @@ namespace KLASMobileApp.Tab
         {
             base.OnAppearing();
 
-            string result = await App.RestManager.UpdateToken("2018203032", "testtoken");
-            
+            NotificationInfo notificationInfo = new NotificationInfo(
+                "2018203032",
+                DateTime.Now,
+                "메시지 제목",
+                "메시지 내용"
+            );
+
+            string result = await App.RestManager.AddNotification(notificationInfo);
             Debug.Print(result);
 
 

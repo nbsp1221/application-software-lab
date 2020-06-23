@@ -28,6 +28,13 @@ namespace KLASMobileApp.Net
         Task<string> UpdateToken(string studentCode, string mobileToken);
 
         /// <summary>
+        /// 알림 서버 - 알림 추가
+        /// </summary>
+        /// <param name="notificationInfo">추가할 알림 정보</param>
+        /// <returns></returns>
+        Task<string> AddNotification(NotificationInfo notificationInfo);
+
+        /// <summary>
         /// 메인 페이지 - 모든 학기에 대한 과목 정보 얻기
         /// </summary>
         /// <returns></returns>

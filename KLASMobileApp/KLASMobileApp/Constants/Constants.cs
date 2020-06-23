@@ -25,6 +25,11 @@ namespace KLASMobileApp.Constants
         public static string URL_UpdateToken = "https://retn0.kr/klas-helper/token-update.php";
 
         /// <summary>
+        /// 알림 서버 - 알림 추가
+        /// </summary>
+        public static string URL_AddNotification = "https://retn0.kr/klas-helper/notification-add.php";
+
+        /// <summary>
         /// 메인 페이지 - 모든 학기에 대한 과목 정보 얻기
         /// </summary>
         public static string URL_AllSemesterLectures = "https://klas.kw.ac.kr/std/cmn/frame/YearhakgiAtnlcSbjectList.do";

@@ -220,6 +220,29 @@ namespace KLASMobileApp.Net
             }
         }
 
+        public async Task<string> AddNotification(NotificationInfo notificationInfo)
+        {
+            try
+            {
+                HttpResponseMessage response = await client.PostAsync(
+                    new Uri(Constants.Constants.URL_AddNotification),
+                    new StringContent(notificationInfo.ToJsonValue(), Encoding.UTF8, "application/json")
+                );
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsStringAsync();
+                }
+
+                return null;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("\tAddNotification() ERROR - {0}", e.Message);
+                return null;
+            }
+        }
+
         public async Task<Dictionary<string, List<LectureInfo>>> GetAllSemesterLectures()
         {
             try
