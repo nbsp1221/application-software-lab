@@ -1,11 +1,168 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="KLASMobileApp.Tab.ToolPage">
     <ContentPage.Content>
-        <Label
-            Text="기능페이지"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            TextColor="Black"
-            />
+
+        <StackLayout
+            Orientation="Vertical">
+            <Label
+                Margin="14,10"
+                TextColor="Black"
+                HorizontalTextAlignment="Start"
+                FontSize="24"
+                Text="기능"/>
+            <ScrollView>    
+                <StackLayout Orientation="Vertical">
+                    <StackLayout
+                        Orientation="Horizontal"
+                                 Padding="14,10">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                        <BoxView Color="Red"
+                                 HeightRequest="16"
+                                 WidthRequest="16"
+                                 VerticalOptions="Center" />
+                        <Label Text="수강과목 현황"
+                               FontSize="16"
+                               TextColor="Black"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" Color="Gray"/>
+                    <StackLayout Orientation="Horizontal"
+                                 Padding="14,10">
+                        <BoxView Color="Red"
+                                 HeightRequest="16"
+                                 WidthRequest="16"
+                                 VerticalOptions="Center" />
+                        <Label Text="기능+"
+                               FontSize="16"
+                               TextColor="Black"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" Color="Gray"/>
+                    <StackLayout Orientation="Horizontal"
+                                 Padding="14,10">
+                        <BoxView Color="Red"
+                                 HeightRequest="16"
+                                 WidthRequest="16"
+                                 VerticalOptions="Center" />
+                        <Label Text="기능+"
+                               FontSize="16"
+                               TextColor="Black"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" Color="Gray"/>
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="14,10">
+                        <BoxView Color="Red"
+                                 HeightRequest="16"
+                                 WidthRequest="16"
+                                 VerticalOptions="Center" />
+                        <Label Text="기능+"
+                               FontSize="16"
+                               TextColor="Black"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" Color="Gray"/>
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="14,10">
+                        <BoxView Color="Red"
+                                 HeightRequest="16"
+                                 WidthRequest="16"
+                                 VerticalOptions="Center" />
+                        <Label Text="기능+"
+                               FontSize="16"
+                               TextColor="Black"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" Color="Gray"/>
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="14,10">
+                        <BoxView Color="Red"
+                                 HeightRequest="16"
+                                 WidthRequest="16"
+                                 VerticalOptions="Center" />
+                        <Label Text="기능+"
+                               FontSize="16"
+                               TextColor="Black"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" Color="Gray"/>
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="14,10">
+                        <BoxView Color="Red"
+                                 HeightRequest="16"
+                                 WidthRequest="16"
+                                 VerticalOptions="Center" />
+                        <Label Text="기능+"
+                               FontSize="16"
+                               TextColor="Black"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" Color="Gray"/>
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="14,10">
+                        <BoxView Color="Red"
+                                 HeightRequest="16"
+                                 WidthRequest="16"
+                                 VerticalOptions="Center" />
+                        <Label Text="기능+"
+                               FontSize="16"
+                               TextColor="Black"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" Color="Gray"/>
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="14,10">
+                        <BoxView Color="Red"
+                                 HeightRequest="16"
+                                 WidthRequest="16"
+                                 VerticalOptions="Center" />
+                        <Label Text="기능+"
+                               FontSize="16"
+                               TextColor="Black"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" Color="Gray"/>
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="14,10">
+                        <BoxView Color="Red"
+                                 HeightRequest="16"
+                                 WidthRequest="16"
+                                 VerticalOptions="Center" />
+                        <Label Text="기능+"
+                               FontSize="16"
+                               TextColor="Black"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" Color="Gray"/>
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="14,10">
+                        <BoxView Color="Red"
+                                 HeightRequest="16"
+                                 WidthRequest="16"
+                                 VerticalOptions="Center" />
+                        <Label Text="기능+"
+                               FontSize="16"
+                               TextColor="Black"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" Color="Gray"/>
+                    <StackLayout Orientation="Horizontal"
+                                 Margin="14,10">
+                        <BoxView Color="Red"
+                                 HeightRequest="16"
+                                 WidthRequest="16"
+                                 VerticalOptions="Center" />
+                        <Label Text="기능+"
+                               FontSize="16"
+                               TextColor="Black"
+                               VerticalOptions="Center" />
+                    </StackLayout>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" Color="Gray"/>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

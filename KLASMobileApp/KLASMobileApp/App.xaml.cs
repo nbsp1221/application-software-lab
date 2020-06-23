@@ -9,6 +9,12 @@ namespace KLASMobileApp
     {
         public static RestManager RestManager { get; private set; }
 
+        public static string curUrl = "";
+        public static string loadUrl = "";
+        public static string loadUrl2 = "";
+
+        public static bool load_require = false;
+
         public App()
         {
             InitializeComponent();

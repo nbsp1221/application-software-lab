@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using KLASMobileApp.Data;
+using KLASMobileApp.Webview;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Org.BouncyCastle.Asn1;
@@ -41,13 +42,17 @@ namespace KLASMobileApp.Net
 
         }
 
-        public void getCookies()
+        public async Task<IEnumerable<Cookie>> getCookies()
         {
             Uri uri = new Uri("https://klas.kw.ac.kr");
             IEnumerable<Cookie> responseCookies = cookies.GetCookies(uri).Cast<Cookie>();
 
+            CookieContainer cookieContainer = new CookieContainer();
+            
             foreach (Cookie cookie in responseCookies)
                 Console.WriteLine(cookie.Name + ": " + cookie.Value);
+
+            return responseCookies;
 
         }
 
@@ -167,9 +172,22 @@ namespace KLASMobileApp.Net
                         if (response2.IsSuccessStatusCode) { 
                             string res2 = await response2.Content.ReadAsStringAsync();
 
-                            if (JObject.Parse(res2)["errorCount"].ToString() == "0")
+                            if (JObject.Parse(res2)["errorCount"].ToString() == "0") {
+                                Uri uri = new Uri("https://klas.kw.ac.kr");
+                                IEnumerable<Cookie> responseCookies = cookies.GetCookies(uri).Cast<Cookie>();
+
+                                CookieContainer cookieContainer = new CookieContainer();
+
+                                foreach (Cookie cookie in responseCookies) {
+                                    Console.WriteLine(cookie.Name + ": " + cookie.Value);
+                                    cookieContainer.Add(cookie);
+                                }
+
+                                UserInfo.CookieContainer = cookieContainer;
+
+
                                 return true;
-                            else
+                            }else
                                 return false;
                         }
                     }
@@ -290,7 +308,7 @@ namespace KLASMobileApp.Net
                     cmmnGamok = "",
                     selecthakgwa = syllabusSearchInfo.DepartmentCode,
                     selectMajor = "",
-                    selectMajorList = ""
+                    selectMajorList = "",
                 });
 
                 HttpResponseMessage response = await client.PostAsync(
@@ -313,6 +331,78 @@ namespace KLASMobileApp.Net
             catch (Exception e)
             {
                 Debug.WriteLine("\tSearchSyllabus() ERROR - {0}", e.Message);
+                return null;
+            }
+        }
+
+        public async Task<List<OnlineLectureData>> GetOnlineLectures(string selectYearhakgi, string selectSubj)
+        {
+            List<OnlineLectureData> onlineLectureDatas;
+            try
+            {
+                List<string> emptyList = new List<string>();
+                string content = Newtonsoft.Json.JsonConvert.SerializeObject(new
+                {
+                    lrnStatus = "N",
+                    lrnSttus = "N",
+                    pageInit = false,
+                    selectYearhakgi = selectYearhakgi,
+                    selectSubj = selectSubj,
+                    selectChangeYn = "Y",
+                    totMbList = emptyList
+                }); ;
+
+                HttpResponseMessage response = await client.PostAsync(new Uri(Constants.Constants.URL_OnlineLectures),
+                    new StringContent(content, Encoding.UTF8, "application/json"));
+                if (response.IsSuccessStatusCode)
+                {
+                    string value = await response.Content.ReadAsStringAsync();
+                    onlineLectureDatas = JsonConvert.DeserializeObject<List<OnlineLectureData>>(value);
+                    return onlineLectureDatas;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public async Task<List<HomeWorkData>> GetHomeWorks(string selectYearhakgi, string selectSubj)
+        {
+            List<HomeWorkData> onlineLectureDatas;
+            try
+            {
+                List<string> emptyList = new List<string>();
+                string content = Newtonsoft.Json.JsonConvert.SerializeObject(new
+                {
+                    lrnStatus = "N",
+                    lrnSttus = "N",
+                    pageInit = false,
+                    selectYearhakgi = selectYearhakgi,
+                    selectSubj = selectSubj,
+                    selectChangeYn = "Y",
+                    totMbList = emptyList
+                }); ;
+
+                HttpResponseMessage response = await client.PostAsync(new Uri(Constants.Constants.URL_HomweWorks),
+                    new StringContent(content, Encoding.UTF8, "application/json"));
+                if (response.IsSuccessStatusCode)
+                {
+                    string value = await response.Content.ReadAsStringAsync();
+                    onlineLectureDatas = JsonConvert.DeserializeObject<List<HomeWorkData>>(value);
+                    return onlineLectureDatas;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
                 return null;
             }
         }

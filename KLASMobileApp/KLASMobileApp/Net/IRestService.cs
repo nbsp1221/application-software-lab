@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using KLASMobileApp.Data;
@@ -8,7 +9,7 @@ namespace KLASMobileApp.Net
 {
     public interface IRestService
     {
-        void getCookies();
+        Task<IEnumerable<Cookie>> getCookies();
 
         Task<bool> LoginSecurity(string id, string pw);
         
@@ -36,5 +37,10 @@ namespace KLASMobileApp.Net
         /// <param name="syllabusSearchInfo">강의 계획서 검색에 필요한 정보</param>
         /// <returns></returns>
         Task<List<SyllabusInfo>> SearchSyllabus(SyllabusSearchInfo syllabusSearchInfo);
+
+
+        Task<List<OnlineLectureData>> GetOnlineLectures(string selectYearhakgi, string selectSubj);
+        Task<List<HomeWorkData>> GetHomeWorks(string selectYearhakgi, string selectSubj);
+        
     }
 }

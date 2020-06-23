@@ -30,5 +30,15 @@ namespace KLASMobileApp.Constants
         /// 강의 계획서 페이지 - 강의 계획서 검색
         /// </summary>
         public static string URL_SearchSyllabus = "https://klas.kw.ac.kr/std/cps/atnlc/LectrePlanStdList.do";
+
+        /// <summary>
+        /// 온라인 강의 컨텐츠 검색 - 온라인 강의 리스트
+        /// </summary>
+        public static string URL_OnlineLectures= "https://klas.kw.ac.kr/std/lis/evltn/SelectOnlineCntntsStdList.do";
+
+        /// <summary>
+        /// 과제 정보 얻기
+        /// </summary>
+        public static string URL_HomweWorks = "https://klas.kw.ac.kr/std/lis/evltn/TaskStdList.do";
     }
 }
