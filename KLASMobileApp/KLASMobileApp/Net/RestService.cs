@@ -316,5 +316,42 @@ namespace KLASMobileApp.Net
                 return null;
             }
         }
+
+        public async Task<Dictionary<string, List<ScoreInfo>>> GetAllSemesterScores()
+        {
+            try
+            {
+                Dictionary<string, List<ScoreInfo>> allSemesterScores = new Dictionary<string, List<ScoreInfo>>();
+
+                HttpResponseMessage response = await client.PostAsync(
+                    new Uri(Constants.Constants.URL_Scores),
+                    new StringContent("{}", Encoding.UTF8, "application/json")
+                );
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonValue = await response.Content.ReadAsStringAsync();
+
+                    foreach (JToken jTokenSemester in JArray.Parse(jsonValue))
+                    {
+                        List<ScoreInfo> scoreInfos = new List<ScoreInfo>();
+
+                        foreach (JToken jTokenScore in jTokenSemester["sungjukList"])
+                        {
+                            scoreInfos.Add(new ScoreInfo(jTokenScore));
+                        }
+
+                        allSemesterScores[string.Format("{0},0{1}", jTokenSemester["thisYear"], jTokenSemester["hakgi"])] = scoreInfos;
+                    }
+                }
+
+                return allSemesterScores;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("\tGetAllSemesterScores() ERROR - {0}", e.Message);
+                return null;
+            }
+        }
     }
 }

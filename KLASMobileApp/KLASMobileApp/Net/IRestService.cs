@@ -36,5 +36,11 @@ namespace KLASMobileApp.Net
         /// <param name="syllabusSearchInfo">강의 계획서 검색에 필요한 정보</param>
         /// <returns></returns>
         Task<List<SyllabusInfo>> SearchSyllabus(SyllabusSearchInfo syllabusSearchInfo);
+
+        /// <summary>
+        /// 수강 / 성적 조회 페이지 - 성적 정보 얻기
+        /// </summary>
+        /// <returns></returns>
+        Task<Dictionary<string, List<ScoreInfo>>> GetAllSemesterScores();
     }
 }

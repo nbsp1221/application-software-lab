@@ -63,5 +63,14 @@ namespace KLASMobileApp.Net
         {
             return restService.SearchSyllabus(syllabusSearchInfo);
         }
+
+        /// <summary>
+        /// 수강 / 성적 조회 페이지 - 성적 정보 얻기
+        /// </summary>
+        /// <returns></returns>
+        public Task<Dictionary<string, List<ScoreInfo>>> GetAllSemesterScores()
+        {
+            return restService.GetAllSemesterScores();
+        }
     }
 }

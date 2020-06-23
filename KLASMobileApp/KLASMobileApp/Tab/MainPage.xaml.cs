@@ -34,6 +34,18 @@ namespace KLASMobileApp.Tab
         {
             base.OnAppearing();
 
+
+
+            Dictionary<string, List<ScoreInfo>> allSemesterScores = await App.RestManager.GetAllSemesterScores();
+
+            foreach (var v in allSemesterScores["2019,02"])
+            {
+                Debug.Print("{0}\t{1}\t{2}", v.LectureName, v.LectureType, v.Grade);
+            }
+
+
+            /*
+             * 강의 계획서 검색 예제
             SyllabusSearchInfo syllabusSearchInfo = new SyllabusSearchInfo();
             syllabusSearchInfo.Year = 2020;
             syllabusSearchInfo.Semester = 1;
@@ -47,6 +59,7 @@ namespace KLASMobileApp.Tab
             {
                 Debug.Print("{0}\t{1}\t{2}", v.LectureName, v.LectureType, v.ProfessorName);
             }
+            */
         }
     }
 
