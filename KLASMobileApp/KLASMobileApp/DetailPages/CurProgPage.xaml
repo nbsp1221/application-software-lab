@@ -31,8 +31,8 @@
                                         <ClickGestureRecognizer></ClickGestureRecognizer>
                                     </StackLayout.GestureRecognizers>
                                     <Label Text="{Binding Title}" TextColor="Black"/>
-                                    <Label Text="{Binding Des1}"/>
-                                    <Label Text="{Binding Des2}"/>
+                                    <Label Text="{Binding Des1}" TextColor="{Binding Des1_Color}"/>
+                                    <Label Text="{Binding Des2}" TextColor="{Binding Des2_Color}"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

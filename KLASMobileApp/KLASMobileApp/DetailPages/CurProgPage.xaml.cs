@@ -10,31 +10,44 @@ namespace KLASMobileApp.DetailPages
     {
         private ObservableCollection<Exam> exams = new ObservableCollection<Exam>();
 
-        public CurProgPage(List<Data.LectureInfo> lectureInfos, string yearhakgi)
+        public CurProgPage()
         {
             InitializeComponent();
 
-            foreach (Data.LectureInfo info in lectureInfos)
-            {
-                GetOnlineLecture(yearhakgi, info.Code, info.Name);
-            }
+            //foreach (Data.LectureInfo info in lectureInfos)
+            //{
+            //    GetOnlineLecture(yearhakgi, info.Code, info.Name);
+            //}
 
             BindingContext = new ExamVM { Exams = exams };
+            GetLectureList();
+        }
+
+        async void GetLectureList()
+        {
+            var lectureMap = await App.RestManager.GetAllSemesterLectures();
+
+            foreach (Data.LectureInfo info in lectureMap["2020,1"])
+            {
+                GetOnlineLecture("2020,1", info.Code, info.Name);
+            }
         }
 
         void listView_ItemSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
         {
             var exam = e.SelectedItem as Exam;
 
-
             //DisplayAlert("click", exam.Des1, "OK");
 
 
-            App.loadUrl = "javascript:appModule.goLctrum('"+exam.Hakgi+"', '"+exam.Code+"')";
+            App.loadUrl = "javascript:appModule.goLctrum('" + exam.Hakgi + "', '" + exam.Code + "')";
             App.loadUrl2 = "javascript:appSelectSubj.getYearhakgiAtnlcSbjectList('" + exam.Hakgi + "', '" + exam.Code + "')";
             App.load_require = true;
 
-            Navigation.PopModalAsync();
+            var tabPage = Navigation.NavigationStack[Navigation.NavigationStack.Count - 1] as TabbedPage;
+
+            tabPage.CurrentPage = tabPage.Children[0];
+
         }
 
         async private void GetOnlineLecture(string yearhakgi, string subCode, string subName)
@@ -50,10 +63,10 @@ namespace KLASMobileApp.DetailPages
             {
                 if (DateTime.Compare(curDate, Convert.ToDateTime(data.endDate)) < 0)
                 {
-                    if (data.ptype!= null && data.prog != 100)
+                    if (data.ptype != null && data.prog != 100)
                     {
                         totalcount++;
-                        if ( (count==0 && DateTime.Compare(lastDate, Convert.ToDateTime(data.endDate))<0) || (count!=0 && DateTime.Compare(lastDate, Convert.ToDateTime(data.endDate)) > 0) )
+                        if ((count == 0 && DateTime.Compare(lastDate, Convert.ToDateTime(data.endDate)) < 0) || (count != 0 && DateTime.Compare(lastDate, Convert.ToDateTime(data.endDate)) > 0))
                         {
                             count = 0;
                             lastDate = Convert.ToDateTime(data.endDate);
@@ -70,19 +83,26 @@ namespace KLASMobileApp.DetailPages
                 exam.Title = subName;
                 exam.Des1 = "남아있는 강의가 없습니다!";
                 exam.Des2 = "";
-               
+                exam.Des1_Color = "#02ab32";
+
+
             }
             else
             {
                 TimeSpan timeDiff = lastDate - curDate;
-                
+
                 exam.Title = subName;
-                if(timeDiff.Days==0)
+                if (timeDiff.Days == 0)
+                {
                     exam.Des1 = totalcount + "개의 강의중 " + count + "개가 " + timeDiff.Hours + "시간 후 마감입니니다.";
+                    exam.Des1_Color = "#fc0505";
+                }
                 else
+                {
                     exam.Des1 = totalcount + "개의 강의중 " + count + "개가 " + timeDiff.Days + "일 후 마감입니니다.";
-                exam.Des2 = "";
-                
+                    exam.Des1_Color = "#000000";
+                }
+
             }
 
             List<Data.HomeWorkData> homeworkdatas = await App.RestManager.GetHomeWorks("2020,1", subCode);
@@ -116,15 +136,22 @@ namespace KLASMobileApp.DetailPages
             {
 
                 exam.Des2 = "남아있는 과제가 없습니다!";
+                exam.Des2_Color = "#02ab32";
             }
             else
             {
                 TimeSpan timeDiff = lastDate - curDate;
 
                 if (timeDiff.Days == 0)
+                {
                     exam.Des2 = totalcount + "개의 과제중 " + count + "개가 " + timeDiff.Hours + "시간 후 마감입니니다.";
+                    exam.Des2_Color = "#fc0505";
+                }
                 else
+                {
                     exam.Des2 = totalcount + "개의 과제중 " + count + "개가 " + timeDiff.Days + "일 후 마감입니니다.";
+                    exam.Des2_Color = "#000000";
+                }
 
             }
 
@@ -139,6 +166,8 @@ namespace KLASMobileApp.DetailPages
         public string Title { get; set; }
         public string Des1 { get; set; }
         public string Des2 { get; set; }
+        public string Des1_Color { get; set; }
+        public string Des2_Color { get; set; }
         public string Code { get; set; }
         public string Hakgi { get; set; }
     }

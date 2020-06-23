@@ -10,16 +10,17 @@
             android:TabbedPage.BarItemColor="#66FFFFFF"
             android:TabbedPage.IsSmoothScrollEnabled="False"
             xmlns:image="clr-namespace:KLASMobileApp.ImageExtension"
-            xmlns:local="clr-namespace:KLASMobileApp.Tab" 
+            xmlns:local="clr-namespace:KLASMobileApp.Tab"
+            xmlns:local2="clr-namespace:KLASMobileApp.DetailPages"
             mc:Ignorable="d"
             NavigationPage.HasNavigationBar="False"
             BarBackgroundColor="#3a0420"
             x:Class="KLASMobileApp.TabPage">
 
     <local:MainPage Title="메인" Icon="{image:EmbeddedImage KLASMobileApp.Images.home.png}"/>
-    <local:ToolPage Title="기능" Icon="{image:EmbeddedImage KLASMobileApp.Images.tool2.png}"/>
+    <local2:CurProgPage Title="현황" Icon="{image:EmbeddedImage KLASMobileApp.Images.tool2.png}"/>
     <local:AlarmPage Title="알람" Icon="{image:EmbeddedImage KLASMobileApp.Images.alarm.png}"/>
-    <local:SettingPage Title="설정" Icon="{image:EmbeddedImage KLASMobileApp.Images.setting.png}"/>
+    <!--<local:SettingPage Title="설정" Icon="{image:EmbeddedImage KLASMobileApp.Images.setting.png}"/>-->
 
     <!--<ContentPage Title="메인" Icon="{image:EmbeddedImage KLASMobileApp.Images.home.png}"/>
     <ContentPage Title="기능" Icon="{image:EmbeddedImage KLASMobileApp.Images.tool2.png}"/>

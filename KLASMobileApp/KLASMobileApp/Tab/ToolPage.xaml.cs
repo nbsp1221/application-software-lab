@@ -20,7 +20,7 @@ namespace KLASMobileApp.Tab
         {
             if (lectureMap != null && lectureMap["2020,1"] !=null )
             {   
-                await Navigation.PushModalAsync(new CurProgPage(lectureMap["2020,1"],"2020,1"));
+                //await Navigation.PushModalAsync(new CurProgPage(lectureMap["2020,1"],"2020,1"));
             }
         }
 

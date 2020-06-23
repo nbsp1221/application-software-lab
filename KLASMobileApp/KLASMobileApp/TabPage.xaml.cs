@@ -47,6 +47,7 @@ namespace KLASMobileApp
         async private void GetOnlineLecture(string yearhakgi, string subCode, string subName)
         {
             List<Data.OnlineLectureData> datas = await App.RestManager.GetOnlineLectures("2020,1", subCode);
+            List<int> indexs = new List<int>();
 
             int count = 0;
             int totalcount = 0;
@@ -66,6 +67,7 @@ namespace KLASMobileApp
                         }
                         if (DateTime.Compare(lastDate, Convert.ToDateTime(data.endDate)) == 0)
                         {
+                            indexs.Add(data.weekNo);
                             count++;
                         }
                     }
@@ -74,9 +76,14 @@ namespace KLASMobileApp
             if( totalcount >0 ) {
                 TimeSpan timeDiff = lastDate - curDate;
 
-           
 
+                string duplicate = subCode + "L";
+                foreach(int i in indexs)
+                {
+                    duplicate += i;
+                }
                 var noti = new Data.NotificationInfo(
+                    duplicate,
                     Preferences.Get(Constants.Constants.Pref_Key_User_ID, ""),
                     lastDate.AddDays(-1),
                     "강의[" + subName + "]",
@@ -95,6 +102,7 @@ namespace KLASMobileApp
             totalcount = 0;
             curDate = DateTime.Now;
             lastDate = DateTime.Now;
+            indexs.Clear();
 
             foreach (Data.HomeWorkData homeWork in homeworkdatas)
             {
@@ -117,7 +125,13 @@ namespace KLASMobileApp
             }
             if (totalcount > 0)
             {
+                string duplicate = subCode + "H";
+                foreach (int i in indexs)
+                {
+                    duplicate += i;
+                }
                 var noti = new Data.NotificationInfo(
+                    duplicate,
                     Preferences.Get(Constants.Constants.Pref_Key_User_ID, ""),
                     lastDate.AddDays(-1),
                     "과제[" + subName + "]",
