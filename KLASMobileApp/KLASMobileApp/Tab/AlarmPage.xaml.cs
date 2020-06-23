@@ -19,16 +19,32 @@ namespace KLASMobileApp.Tab
             BindingContext = new AlarmVM { Alarms = alarms };
 
             
+            //listView.IsVisible =true;
+            //label.IsVisible = false;
+            //alarms.Add(new Alarm { Title = "과제[운영체제]", Des1 = "테스트과제", Des2 = "06/26 17:30" });
+            //alarms.Add(new Alarm { Title = "과제[운영체제]", Des1 = "테스트과제", Des2 = "06/26 17:30" });
+            //alarms.Add(new Alarm { Title = "과제[운영체제]", Des1 = "테스트과제", Des2 = "06/26 17:30" });
+            //alarms.Add(new Alarm { Title = "과제[운영체제]", Des1 = "테스트과제", Des2 = "06/26 17:30" });
+            //alarms.Add(new Alarm { Title = "과제[운영체제]", Des1 = "테스트과제", Des2 = "06/26 17:30" });
+            //alarms.Add(new Alarm { Title = "과제[운영체제]", Des1 = "테스트과제", Des2 = "06/26 17:30" });
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            alarms.Clear();
             var alarm = Preferences.Get(Constants.Constants.Pref_Key_Alarm, "");
             if (alarm.Length > 0)
             {
                 var list = JsonConvert.DeserializeObject<List<Data.AlarmData>>(alarm);
 
-                foreach(Data.AlarmData data in list)
+                list.Reverse();
+                foreach (Data.AlarmData data in list)
                 {
-                    alarms.Add(new Alarm{ Title= data.title, Des1= data.body, Des2= data.time });
+                    alarms.Add(new Alarm { Title = data.title, Des1 = data.body, Des2 = data.time });
                 }
-                
+
             }
             else
             {

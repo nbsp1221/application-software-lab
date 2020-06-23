@@ -31,6 +31,7 @@
     <None Remove="Images\setting.png" />
     <None Remove="Images\tool.png" />
     <None Remove="Images\tool2.png" />
+    <None Remove="Images\ic_alarm_list.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\logo.png" />
@@ -39,6 +40,7 @@
     <EmbeddedResource Include="Images\setting.png" />
     <EmbeddedResource Include="Images\tool.png" />
     <EmbeddedResource Include="Images\tool2.png" />
+    <EmbeddedResource Include="Images\ic_alarm_list.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Android">

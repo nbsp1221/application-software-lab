@@ -103,9 +103,10 @@ namespace KLASMobileApp
             curDate = DateTime.Now;
             lastDate = DateTime.Now;
             indexs.Clear();
-
+            int tmp = 0;
             foreach (Data.HomeWorkData homeWork in homeworkdatas)
             {
+                tmp++;
                 if (DateTime.Compare(curDate, Convert.ToDateTime(homeWork.expiredate)) < 0)
                 {
                     if (homeWork.submityn.Equals("N"))
@@ -118,6 +119,7 @@ namespace KLASMobileApp
                         }
                         if (DateTime.Compare(lastDate, Convert.ToDateTime(homeWork.expiredate)) == 0)
                         {
+                            indexs.Add(tmp);
                             count++;
                         }
                     }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="KLASMobileApp.Tab.AlarmPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:image="clr-namespace:KLASMobileApp.ImageExtension" x:Class="KLASMobileApp.Tab.AlarmPage">
     <ContentPage.Content>
         <StackLayout
             Orientation="Vertical">
@@ -23,11 +23,12 @@
                                     Padding="10,0,0,0"
                                     Margin="0,5">
                                     <Image
-                                        />
+                                        Margin="5,0"
+                                        Source="{image:EmbeddedImage KLASMobileApp.Images.ic_alarm_list.png}"/>
                                     <StackLayout Orientation="Vertical">
                                         <Label Text="{Binding Title}" TextColor="Black"/>
-                                        <Label Text="{Binding Des1}"/>
-                                        <Label Text="{Binding Des2}"/>
+                                        <Label Text="{Binding Des1}" TextColor="Black"/>
+                                        <Label Text="{Binding Des2}" FontSize="12"/>
                                     </StackLayout>
                                 </StackLayout>
                             </ViewCell>

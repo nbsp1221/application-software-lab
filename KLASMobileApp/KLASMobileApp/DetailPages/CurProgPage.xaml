@@ -26,10 +26,6 @@
                                 Padding="10,0,0,0"
                                 Margin="0,5"
                             Orientation="Vertical">
-                                    <StackLayout.GestureRecognizers
-                                        >
-                                        <ClickGestureRecognizer></ClickGestureRecognizer>
-                                    </StackLayout.GestureRecognizers>
                                     <Label Text="{Binding Title}" TextColor="Black"/>
                                     <Label Text="{Binding Des1}" TextColor="{Binding Des1_Color}"/>
                                     <Label Text="{Binding Des2}" TextColor="{Binding Des2_Color}"/>
