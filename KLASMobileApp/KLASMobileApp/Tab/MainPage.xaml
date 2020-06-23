@@ -5,13 +5,13 @@
     xmlns:local="clr-namespace:KLASMobileApp.Webview"
     x:Class="KLASMobileApp.Tab.MainPage">
     <ContentPage.Content>
-            <StackLayout>
-                <local:CookieWebView
+        <StackLayout>
+            <WebView
                 x:Name="webView"
                     Source="https://klas.kw.ac.kr/std/cmn/frame/Frame.do"
                     Navigating="webView_Navigating"
                    HeightRequest="1000"
-        WidthRequest="1000"/>
-            </StackLayout>
+                    WidthRequest="1000"/>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Util;
 using Firebase.Iid;
+using Xamarin.Essentials;
 
 namespace KLASMobileApp.Droid.Properties
 {
@@ -20,7 +21,7 @@ namespace KLASMobileApp.Droid.Properties
         }
         void SendRegistrationToServer(string token)
         {
-            
+            Preferences.Set(Constants.Constants.Pref_Key_FcmToken, token);
         }
     }
 }

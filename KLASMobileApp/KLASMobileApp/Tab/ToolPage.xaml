@@ -28,7 +28,7 @@
                                VerticalOptions="Center" />
                     </StackLayout>
                     <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" Color="Gray"/>
-                    <StackLayout Orientation="Horizontal"
+                    <!--<StackLayout Orientation="Horizontal"
                                  Padding="14,10">
                         <BoxView Color="Red"
                                  HeightRequest="16"
@@ -159,7 +159,7 @@
                                TextColor="Black"
                                VerticalOptions="Center" />
                     </StackLayout>
-                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" Color="Gray"/>
+                    <BoxView HorizontalOptions="FillAndExpand" HeightRequest="0.5" Color="Gray"/>-->
                 </StackLayout>
             </ScrollView>
         </StackLayout>

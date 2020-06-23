@@ -1,11 +1,52 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="KLASMobileApp.Tab.AlarmPage">
     <ContentPage.Content>
-        <Label
-            Text="알람페이지"
-            VerticalOptions="Center"
+        <StackLayout
+            Orientation="Vertical">
+            <Label
+                Text="알림"
+                Margin="14,10"
+                TextColor="Black"
+                HorizontalTextAlignment="Start"
+                FontSize="24"/>
+            <StackLayout>
+                <ListView x:Name="listView"
+                      HasUnevenRows = "True"
+                      ItemsSource="{Binding Alarms}"
+                      ItemSelected="listView_ItemSelected"
+                      >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout
+                                    Orientation="Horizontal"
+                                    Padding="10,0,0,0"
+                                    Margin="0,5">
+                                    <Image
+                                        />
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding Title}" TextColor="Black"/>
+                                        <Label Text="{Binding Des1}"/>
+                                        <Label Text="{Binding Des2}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+              
+            </StackLayout>
+            <Label
+                    x:Name="label"
+                    TextColor="Black"
+                    FontSize="24"
+                Margin="0,120,0,0"
+                    VerticalOptions="Center"
             HorizontalOptions="Center"
-            TextColor="Black"
-            />
+                    Text="알림이 없습니다."
+                       IsVisible="false"/>
+        </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

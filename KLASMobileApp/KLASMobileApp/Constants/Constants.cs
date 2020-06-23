@@ -13,7 +13,8 @@ namespace KLASMobileApp.Constants
 
 
 
-
+        public static string Pref_Key_Alarm = "alarm";
+        public static string Pref_Key_FcmToken = "fcmToken";
         public static string Pref_Key_User_ID = "user_id";
         public static string Pref_Key_User_PW = "user_pw";
 

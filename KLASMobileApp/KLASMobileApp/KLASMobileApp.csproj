@@ -22,7 +22,6 @@
     <Folder Include="Webview\" />
     <Folder Include="Net\" />
     <Folder Include="Constants\" />
-    <Folder Include="ViewModel\" />
     <Folder Include="DetailPages\" />
   </ItemGroup>
   <ItemGroup>

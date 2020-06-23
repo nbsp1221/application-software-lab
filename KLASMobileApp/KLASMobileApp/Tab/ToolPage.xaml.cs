@@ -29,6 +29,7 @@ namespace KLASMobileApp.Tab
             lectureMap = await App.RestManager.GetAllSemesterLectures();
         }
 
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
